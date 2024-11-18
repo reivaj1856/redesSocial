@@ -20,6 +20,5 @@ export class AuthService {
 
   logueado():boolean {
     return this.autenticado;
-    console.log(this.autenticado);
   }
 }

@@ -16,7 +16,6 @@ export class LoginComponent {
   }
   login(){
     this.auth.login();
-    console.log("intento");
     this.router.navigate(['/home']);
   }
 
