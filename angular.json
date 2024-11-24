@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "redesSociales": {
+    "redessociales": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -64,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "redesSociales:build:production"
+              "buildTarget": "redessociales:build:production"
             },
             "development": {
-              "buildTarget": "redesSociales:build:development"
+              "buildTarget": "redessociales:build:development"
             }
           },
           "defaultConfiguration": "development"
