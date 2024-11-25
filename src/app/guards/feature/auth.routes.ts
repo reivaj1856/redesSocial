@@ -8,5 +8,11 @@ export default [
     {
         path: 'sign-up',
         loadComponent: ()=> import('./sing-up/sing-up.component'),    
-    }
+    },
+    { 
+        path: '', redirectTo: 'home', pathMatch: 'full'
+    },
+    {
+        path: '**' , redirectTo: 'sign-in'
+    },
 ] as Routes
