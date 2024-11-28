@@ -1,10 +1,22 @@
-import { Injectable } from '@angular/core';
-import { Observable , of} from 'rxjs';
+import { inject, Injectable } from '@angular/core';
+import { Auth, createUserWithEmailAndPassword,signInWithEmailAndPassword} from '@angular/fire/auth';
+import { User } from '../interface/user';
+
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
+  private _auth = inject(Auth) 
+
+  singUP(user:User)  {
+    return createUserWithEmailAndPassword(this._auth, user.email, user.password);
+  }
+
+  singIn(user:User){
+    return signInWithEmailAndPassword(this._auth, user.email, user.password);
+  }
 
   constructor() { } 
 
@@ -22,3 +34,4 @@ export class AuthService {
     return this.autenticado;
   }
 }
+

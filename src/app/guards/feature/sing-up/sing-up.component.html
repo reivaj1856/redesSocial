@@ -1,24 +1,80 @@
 <app-head></app-head>
-<section class="bg-auto bg-contain bg-cover bg-[url('https://www.opinion.com.bo/asset/thumbnail,992,558,center,center/media/opinion/images/2022/01/24/2022012410133553043.jpg')]">
-    <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-       
-        <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-blue-950 dark:border-blue-950">
-            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-                <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                    Crear un cuenta
-                </h1>
-                <form class="max-w-sm mx-auto">
-                    <div class="mb-5">
-                      <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tu correo</label>
-                      <input type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@upds.net.bo" required />
-                    </div>
-                    <div class="mb-5">
-                      <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tu contraseña</label>
-                      <input type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
-                    </div>
-                    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Crear cuenta</button>
-                  </form>
+<section
+  class="bg-blue-900 bg-cover bg-auto bg-contain bg-center bg-no-repeat bg-[url('https://www.upds.edu.bo/wp-content/uploads/2023/07/3.jpg')]"
+>
+  <div
+    class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0"
+  >
+    <div
+      class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-blue-950 dark:border-blue-950"
+    >
+      <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+        <h1
+          class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
+        >
+          Crear una cuenta
+        </h1>
+        <form class="max-w-sm mx-auto" [formGroup]="form" (ngSubmit)="submit()">
+          <div class="mb-5">
+            <label
+              for="email"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >Tu correo</label
+            >
+            <input
+              type="email"
+              id="email"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="name@upds.net.bo"
+              required
+              formControlName="email"
+            />
+            @if (isRequired('email')) {
+              <div class="text-sm m-1">
+                <small class="text-white">Por favor ingrese un email</small>
+              </div>
+            }
+            @if (isEmailRequired()) {
+              <div class="text-sm m-1">
+                <small class="text-white">El correo debe ser valido</small>
+              </div>
+            }
+          </div>
+          <div class="mb-5">
+            <label
+              for="password"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >Tu contraseña</label
+            >
+            <input
+              type="password"
+              id="password"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              required
+              formControlName="password"
+            />
+            @if(isRequired('password')){
+              <div class="text-sm m-1">
+                <small class="text-white">Es nesesario una contraseña</small>
+              </div>
+            }
+
+            <div>
+              <a
+                href="/auth/sign-in"
+                class="text-sm font-medium m-1 text-white hover:underline dark:text-primary-500"
+                >Tienes una cuenta?</a
+              >
             </div>
-        </div>
+          </div>
+          <button
+            type="submit"
+            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          >
+            Crear cuenta
+          </button>
+        </form>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
