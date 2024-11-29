@@ -47,13 +47,14 @@ export default class SingUpComponent {
 
       if (!email || !password) return;
       
-      this._authService.singIn({ email, password });
+      await this._authService.singIn({ email, password });
       
       toast.success('Inicio de sesion autenticado')
 
       this.auth.login()
-
-      this.router.navigateByUrl('/home');
+      console.log(this.auth.logueado())
+      
+      this.router.navigateByUrl('/home'); 
 
     } catch (error) {
       toast.success('Ocurrio un error')
