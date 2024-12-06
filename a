@@ -1,0 +1,189 @@
+[1mdiff --git a/src/app/guards/feature/sing-in/sing-in.component.html b/src/app/guards/feature/sing-in/sing-in.component.html[m
+[1mindex 1694a30..406e4de 100644[m
+[1m--- a/src/app/guards/feature/sing-in/sing-in.component.html[m
+[1m+++ b/src/app/guards/feature/sing-in/sing-in.component.html[m
+[36m@@ -1,56 +1,111 @@[m
+ <app-head></app-head>[m
+[31m-<section class="bg-auto bg-contain bg-cover bg-[url('https://www.upds.edu.bo/wp-content/uploads/2021/05/WhatsApp-Image-2021-05-12-at-18.16.46.jpeg')]">[m
+[31m-    <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">[m
+[31m-        [m
+[31m-        <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-blue-950 dark:border-blue-950">[m
+[31m-            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">[m
+[31m-                <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">[m
+[31m-                    Inicia sesion en tu cuenta[m
+[31m-                </h1>[m
+[31m-                <form class="space-y-4 md:space-y-6" [formGroup]="form" (ngSubmit)="submit()">[m
+[31m-                    <div>[m
+[31m-                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tu email</label>[m
+[31m-                        <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@upds.net.bo" required=""[m
+[31m-                        formControlName="email">[m
+[31m-                        @if (isRequired('email')) {[m
+[31m-                            <div class="text-sm m-1">[m
+[31m-                              <small class="text-white">Por favor ingrese un email</small>[m
+[31m-                            </div>[m
+[31m-                          }[m
+[31m-                          @if (isEmailRequired()) {[m
+[31m-                            <div class="text-sm m-1">[m
+[31m-                              <small class="text-white">El correo debe ser valido</small>[m
+[31m-                            </div>[m
+[31m-                          }[m
+[31m-                    </div>[m
+[31m-                    <div>[m
+[31m-                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contraseña</label>[m
+[31m-                        <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" [m
+[31m-                        required=""[m
+[31m-                        formControlName="password">[m
+[31m-                        @if(isRequired('password')){[m
+[31m-                            <div class="text-sm m-1">[m
+[31m-                              <small class="text-white">Es nesesario una contraseña</small>[m
+[31m-                            </div>[m
+[31m-                          }[m
+[31m-                    </div>[m
+[31m-                    <div class="flex items-center justify-between">[m
+[31m-                        <div class="flex items-start">[m
+[31m-                            <div class="flex items-center h-5">[m
+[31m-                              <input id="remember" aria-describedby="remember" type="checkbox" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800" required="">[m
+[31m-                            </div>[m
+[31m-                            <div class="ml-3 text-sm">[m
+[31m-                              <label for="remember" class="text-gray-500 dark:text-gray-300">Recordarme la cuenta</label>[m
+[31m-                            </div>[m
+[31m-                        </div>[m
+[31m-                        <a href="#" class="text-sm font-medium text-blue-600 hover:underline dark:text-primary-500">Olvidaste tu contraseña?</a>[m
+[31m-                    </div>[m
+[31m-                    <button type="submit" class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-800 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Iniciar Sesion</button>[m
+[31m-                    <p class="text-sm font-light text-gray-500 dark:text-gray-400">[m
+[31m-                        No cuentas con una cuenta? <a href="/auth/sign-up" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Crear una cuenta</a>[m
+[31m-                    </p>[m
+[31m-                </form>[m
+[32m+[m[32m<section[m
+[32m+[m[32m  class="bg-auto bg-contain bg-cover bg-[url('https://www.upds.edu.bo/wp-content/uploads/2021/05/WhatsApp-Image-2021-05-12-at-18.16.46.jpeg')]"[m
+[32m+[m[32m>[m
+[32m+[m[32m  <div[m
+[32m+[m[32m    class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0"[m
+[32m+[m[32m  >[m
+[32m+[m[32m    <div[m
+[32m+[m[32m      class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-blue-950 dark:border-blue-950"[m
+[32m+[m[32m    >[m
+[32m+[m[32m      <div class="p-6 space-y-4 md:space-y-6 sm:p-8">[m
+[32m+[m[32m        <h1[m
+[32m+[m[32m          class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"[m
+[32m+[m[32m        >[m
+[32m+[m[32m          Inicia sesion en tu cuenta[m
+[32m+[m[32m        </h1>[m
+[32m+[m[32m        <form[m
+[32m+[m[32m          class="space-y-4 md:space-y-6"[m
+[32m+[m[32m          [formGroup]="form"[m
+[32m+[m[32m          (ngSubmit)="submit()"[m
+[32m+[m[41m          [m
+[32m+[m[32m        >[m
+[32m+[m[32m          <div>[m
+[32m+[m[32m            <label[m
+[32m+[m[32m              for="email"[m
+[32m+[m[32m              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"[m
+[32m+[m[32m              >Tu email</label[m
+[32m+[m[32m            >[m
+[32m+[m[32m            <input[m
+[32m+[m[32m              type="email"[m
+[32m+[m[32m              name="email"[m
+[32m+[m[32m              id="email"[m
+[32m+[m[32m              class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"[m
+[32m+[m[32m              placeholder="name@upds.net.bo"[m
+[32m+[m[32m              required=""[m
+[32m+[m[32m              formControlName="email"[m
+[32m+[m[32m            />[m
+[32m+[m[32m            @if (isRequired('email')) {[m
+[32m+[m[32m            <div class="text-sm m-1">[m
+[32m+[m[32m              <small class="text-white">Por favor ingrese un email</small>[m
+             </div>[m
+[31m-        </div>[m
+[32m+[m[32m            } @if (isEmailRequired()) {[m
+[32m+[m[32m            <div class="text-sm m-1">[m
+[32m+[m[32m              <small class="text-white">El correo debe ser valido</small>[m
+[32m+[m[32m            </div>[m
+[32m+[m[32m            }[m
+[32m+[m[32m          </div>[m
+[32m+[m[32m          <div>[m
+[32m+[m[32m            <label[m
+[32m+[m[32m              for="password"[m
+[32m+[m[32m              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"[m
+[32m+[m[32m              >Contraseña</label[m
+[32m+[m[32m            >[m
+[32m+[m[32m            <input[m
+[32m+[m[32m              type="password"[m
+[32m+[m[32m              name="password"[m
+[32m+[m[32m              id="password"[m
+[32m+[m[32m              placeholder="••••••••"[m
+[32m+[m[32m              class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"[m
+[32m+[m[32m              required=""[m
+[32m+[m[32m              formControlName="password"[m
+[32m+[m[32m            />[m
+[32m+[m[32m            @if(isRequired('password')){[m
+[32m+[m[32m            <div class="text-sm m-1">[m
+[32m+[m[32m              <small class="text-white">Es nesesario una contraseña</small>[m
+[32m+[m[32m            </div>[m
+[32m+[m[32m            }[m
+[32m+[m[32m          </div>[m
+[32m+[m[32m          <div class="flex items-center justify-between">[m
+[32m+[m[32m            <div class="flex items-start">[m
+[32m+[m[32m              <div class="flex items-center h-5">[m
+[32m+[m[32m                <input[m
+[32m+[m[32m                  id="remember"[m
+[32m+[m[32m                  aria-describedby="remember"[m
+[32m+[m[32m                  type="checkbox"[m
+[32m+[m[32m                  class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"[m
+[32m+[m[32m                  required=""[m
+[32m+[m[32m                />[m
+[32m+[m[32m              </div>[m
+[32m+[m[32m              <div class="ml-3 text-sm">[m
+[32m+[m[32m                <label for="remember" class="text-gray-500 dark:text-gray-300"[m
+[32m+[m[32m                  >Recordarme la cuenta</label[m
+[32m+[m[32m                >[m
+[32m+[m[32m              </div>[m
+[32m+[m[32m            </div>[m
+[32m+[m[32m            <a[m
+[32m+[m[32m              href="#"[m
+[32m+[m[32m              class="text-sm font-medium text-blue-600 hover:underline dark:text-primary-500"[m
+[32m+[m[32m              >Olvidaste tu contraseña?</a[m
+[32m+[m[32m            >[m
+[32m+[m[32m          </div>[m
+[32m+[m[32m          <button[m
+[32m+[m[32m            type="submit"[m
+[32m+[m[32m            class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-800 dark:hover:bg-primary-700 dark:focus:ring-primary-800"[m
+[32m+[m[32m          >[m
+[32m+[m[32m            Iniciar Sesion[m
+[32m+[m[32m          </button>[m
+[32m+[m[32m          <p class="text-sm font-light text-gray-500 dark:text-gray-400">[m
+[32m+[m[32m            No cuentas con una cuenta?[m
+[32m+[m[32m            <a[m
+[32m+[m[32m              href="/auth/sign-up"[m
+[32m+[m[32m              class="font-medium text-primary-600 hover:underline dark:text-primary-500"[m
+[32m+[m[32m              >Crear una cuenta</a[m
+[32m+[m[32m            >[m
+[32m+[m[32m          </p>[m
+[32m+[m[41m         [m
+[32m+[m[32m        </form>[m
+[32m+[m[32m      </div>[m
+     </div>[m
+[31m-  </section>[m
+\ No newline at end of file[m
+[32m+[m[32m  </div>[m
+[32m+[m[32m</section>[m
+[1mdiff --git a/src/app/guards/feature/sing-in/sing-in.component.ts b/src/app/guards/feature/sing-in/sing-in.component.ts[m
+[1mindex 9b6a64e..1f9177e 100644[m
+[1m--- a/src/app/guards/feature/sing-in/sing-in.component.ts[m
+[1m+++ b/src/app/guards/feature/sing-in/sing-in.component.ts[m
+[36m@@ -53,11 +53,12 @@[m [mexport default class SingUpComponent {[m
+ [m
+       this.auth.login()[m
+       console.log(this.auth.logueado())[m
+[31m-      [m
+       this.router.navigateByUrl('/home'); [m
+ [m
+     } catch (error) {[m
+[31m-      toast.success('Ocurrio un error')[m
+[32m+[m[32m      toast.success('Cuenta no existente o contraseña incorrecta')[m
+[32m+[m[32m      console.log(this.auth.logueado())[m
+     }[m
+   }[m
+[32m+[m[32m  dsamndbsjadksa dsnaidnwq ncsxoa[m
+ }[m

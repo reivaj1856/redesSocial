@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword,signInWithEmailAndPassword} from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword,signInWithEmailAndPassword,signInWithPopup,GoogleAuthProvider} from '@angular/fire/auth';
 import { User } from '../interface/user';
 
 
@@ -16,6 +16,11 @@ export class AuthService {
 
   singIn(user:User){
     return signInWithEmailAndPassword(this._auth, user.email, user.password);
+  }
+
+  singInWithGoogle(){
+    const provider = new GoogleAuthProvider()
+    return signInWithPopup(this._auth,provider);
   }
 
   constructor() { } 

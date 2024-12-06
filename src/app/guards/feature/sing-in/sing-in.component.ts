@@ -5,6 +5,7 @@ import { hasEmailError, isRequired } from '../../utils/validators';
 import { AuthService } from '../../../services/auth.service';
 import { toast } from 'ngx-sonner';
 import { Router, RouterLink } from '@angular/router';
+import { BotonGoogleComponent } from '../../ui/boton-google/boton-google.component';
 
 interface FormSignIn {
   email: FormControl<string | null>;
@@ -14,7 +15,7 @@ interface FormSignIn {
 @Component({
   selector: 'app-sing-up',
   standalone: true,
-  imports: [HeadComponent, ReactiveFormsModule ,RouterLink],
+  imports: [HeadComponent, ReactiveFormsModule, RouterLink, BotonGoogleComponent],
   templateUrl: './sing-in.component.html',
   styles: ``,
 })
@@ -53,11 +54,24 @@ export default class SingUpComponent {
 
       this.auth.login()
       console.log(this.auth.logueado())
-      
       this.router.navigateByUrl('/home'); 
 
     } catch (error) {
-      toast.success('Ocurrio un error')
+      toast.success('Cuenta no existente o contraseña incorrecta')
+      console.log(this.auth.logueado())
+    }
+  }
+  async submitWithGoogle(){
+    try{
+
+      this.auth.login()
+      console.log(this.auth.logueado())
+      await this._authService.singInWithGoogle()
+      this.router.navigateByUrl('/home'); 
+      toast.success('Inicio de sesion autenticado')
+
+    }catch(error){
+      toast.success('Cuenta no valida')
     }
   }
 }
