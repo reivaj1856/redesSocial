@@ -3,6 +3,9 @@ import { authGuard } from './guards/auth.guard';
 import { privateGuard, publicGuard } from './core/auth.guard';
 
 export const routes: Routes = [
+    { 
+        path: '', redirectTo: 'auth', pathMatch: 'full'
+    },
     {
         canActivateChild: [publicGuard()],
         path:'auth',
@@ -13,14 +16,15 @@ export const routes: Routes = [
         path: 'task',
         loadChildren: ()=> import('./task/features/task.routes')
     },
-    { 
-        path: '', redirectTo: 'home', pathMatch: 'full'
+    {
+        canActivateChild: [privateGuard()],
+        path: 'eventos',
+        loadComponent: ()=> import('./eventos/eventos.component').then(m=>m.EventosComponent) 
     },
     { 
         
         path: 'home',
-        loadComponent: ()=> import('./home/home.component').then(m=>m.HomeComponent),
-        canActivate: [authGuard]
+        loadComponent: ()=> import('./home/home.component').then(m=>m.HomeComponent)
     },
     { 
         path: 'login',

@@ -52,7 +52,6 @@ export default class SingUpComponent {
       
       toast.success('Inicio de sesion autenticado')
 
-      this.auth.login()
       console.log(this.auth.logueado())
       this.router.navigateByUrl('/home'); 
 
@@ -64,7 +63,6 @@ export default class SingUpComponent {
   async submitWithGoogle(){
     try{
 
-      this.auth.login()
       console.log(this.auth.logueado())
       await this._authService.singInWithGoogle()
       this.router.navigateByUrl('/home'); 

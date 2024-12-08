@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { toast, NgxSonnerToaster } from 'ngx-sonner';
 import { HeadComponent } from './head/head.component';
+import { authState } from '@angular/fire/auth';
+import { AuthStateService } from './shared/data-access/auth-state.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -12,4 +15,13 @@ import { HeadComponent } from './head/head.component';
 })
 export class AppComponent {
   title = 'redesSociales';
+  
+  private _authState = inject(AuthStateService)
+  private _router = inject(Router)
+
+  async logOut(){
+     await this._authState.logOut()
+     this._router.navigateByUrl('/auth/sing-in')
+  }
 }
+
