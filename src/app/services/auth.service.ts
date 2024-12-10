@@ -20,6 +20,9 @@ export class AuthService {
 
   singInWithGoogle(){
     const provider = new GoogleAuthProvider()
+
+    provider.setCustomParameters({prompt: 'select_account'})
+
     return signInWithPopup(this._auth,provider);
   }
 
@@ -27,16 +30,6 @@ export class AuthService {
 
   private autenticado = false;
 
-  login(){
-    this.autenticado = true;
-  }
-
-  logout(){
-    this.autenticado = false;
-  }
-
-  logueado():boolean {
-    return this.autenticado;
-  }
+  
 }
 

@@ -1,9 +1,7 @@
 import { Component, inject } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
-import { toast, NgxSonnerToaster } from 'ngx-sonner';
-import { HeadComponent } from './head/head.component';
-import { authState } from '@angular/fire/auth';
-import { AuthStateService } from './shared/data-access/auth-state.service';
+import {  RouterOutlet } from '@angular/router';
+import {  NgxSonnerToaster } from 'ngx-sonner';
+import { AuthStateService } from './segurity/acces/auth-state.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -21,7 +19,7 @@ export class AppComponent {
 
   async logOut(){
      await this._authState.logOut()
-     this._router.navigateByUrl('/auth/sing-in')
+     this._router.navigateByUrl('/auth/login')
   }
 }
 
