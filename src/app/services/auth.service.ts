@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword,signInWithEmailAndPassword,signInWithPopup,GoogleAuthProvider} from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword,signInWithEmailAndPassword,signInWithPopup,GoogleAuthProvider,sendPasswordResetEmail} from '@angular/fire/auth';
 import { User } from '../interface/user';
 
 
@@ -9,7 +9,10 @@ import { User } from '../interface/user';
 
 export class AuthService {
   private _auth = inject(Auth) 
-
+  
+  recoverPassword(user: User) {
+    return sendPasswordResetEmail(this._auth, user.email);
+  }
   singUP(user:User)  {
     return createUserWithEmailAndPassword(this._auth, user.email, user.password);
   }

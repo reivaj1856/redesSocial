@@ -21,37 +21,41 @@ interface FormSignUp {
   styles: ``,
 })
 export default class SingUpComponent {
-  private _formBuilder = inject(FormBuilder);
-  private _authService = inject(AuthService);
-  constructor(private router: Router,public auth: AuthService   ) {}
-  
-  // ,private fireAuth: AngularFireAuth
-
-  isRequired(field: 'email' | 'password') {
-    return isRequired(field, this.form);
-  }
   isEmailRequired() {
-    return hasEmailError(this.form);
-  }
-
-  form = this._formBuilder.group<FormSignUp>({
-    email: this._formBuilder.control('', [
-      Validators.required,
-      Validators.email,
-    ]),
-    password: this._formBuilder.control('', Validators.required),
-  });
-
-  ngOnInit(): void{
-
-  }
-
-  forgotPassword(email : string) {
-      // this.fireAuth.sendPasswordResetEmail(email).then(() => {
-      //   this.router.navigate(['/varify-email']);
-      // }, err => {
-      //   alert('Something went wrong');
-      // })
-  }
-
-}
+    throw new Error('Method not implemented.');
+    }
+      private _formBuilder = inject(FormBuilder);
+      private _authService = inject(AuthService);
+    
+      constructor(private _router: Router) {}
+    
+    goToSignIn() {
+      this._router.navigate(['/auth/sign-in']);
+    }
+    
+      form = this._formBuilder.group({
+        email: this._formBuilder.control('', [Validators.required, Validators.email]),
+      });
+    
+      async submit() {
+        if (this.form.invalid) {
+          toast.error('Por favor, ingresa un correo válido');
+          return;
+        }
+    
+        try {
+          const { email } = this.form.value;
+    
+          if (!email) return;
+    
+          await this._authService.recoverPassword({
+            email,
+            password: ''
+          });
+    
+          toast.success('Solicitud Autenticada, revise su bandeja');
+        } catch (error) {
+          toast.error('Solicitud no verificada intente de nuevo mas tarde');
+        }
+      }
+    }

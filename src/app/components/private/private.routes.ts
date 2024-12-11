@@ -4,7 +4,7 @@ export default [
     
     {
         path: 'feeds',
-        loadComponent: () => import('./feeds/feeds.component'),
+        loadChildren: () => import('./home-feeds/task.routes'),
     },
     {
         path: 'home',
@@ -22,6 +22,7 @@ export default [
         path: 'message',
         loadComponent: () => import('./message/message.component'),
     },
+  
     {
         path: '**',
         redirectTo: 'feeds',

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HeadComponent } from './head.component';
+import { FeedsFormsComponent } from './feeds-forms.component';
 
-describe('HeadComponent', () => {
-  let component: HeadComponent;
-  let fixture: ComponentFixture<HeadComponent>;
+describe('FeedsFormsComponent', () => {
+  let component: FeedsFormsComponent;
+  let fixture: ComponentFixture<FeedsFormsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HeadComponent]
+      imports: [FeedsFormsComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(HeadComponent);
+    fixture = TestBed.createComponent(FeedsFormsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -21,4 +21,3 @@ describe('HeadComponent', () => {
     expect(component).toBeTruthy();
   });
 });
-
