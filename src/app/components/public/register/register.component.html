@@ -40,7 +40,7 @@
               </div>
             }
           </div>
-          <div class="mb-5">
+          <div class="mb-5 ">
             <label
               for="password"
               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -58,13 +58,31 @@
                 <small class="text-white">Es nesesario una contraseña</small>
               </div>
             }
-
-            <div >
-              <a
-                href="/auth/login"
-                class="text-sm font-medium m-1 text-white hover:underline dark:text-primary-500"
-                >Tienes una cuenta?</a
+            <div class="mb-5 py-5">
+              <label
+                for="nombre"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >Tu Nombre</label
               >
+              <input
+                type="text"
+                id="nombre"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                required
+                formControlName="nombre"
+              />
+              @if(isRequired('email')){
+                <div class="text-sm m-1">
+                  <small class="text-white">Es nesesario un Nombre</small>
+                </div>
+              }
+              <div >
+                <a
+                  href="/auth/login"
+                  class="text-sm font-medium m-1 text-white hover:underline dark:text-primary-500"
+                  >Tienes una cuenta?</a
+                >
+              </div>
             </div>
           </div>
           <button 

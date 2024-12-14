@@ -25,7 +25,6 @@ export default class SingUpComponent {
   private _authService = inject(AuthService);
   constructor(private router: Router,public auth: AuthService ) {}
 
-
   isRequired(field: 'email' | 'password') {
     return isRequired(field, this.form);
   }

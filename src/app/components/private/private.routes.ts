@@ -3,8 +3,12 @@ import { Routes } from "@angular/router";
 export default [
     
     {
-        path: 'feeds',
+        path: 'noticias',
         loadChildren: () => import('./home-feeds/task.routes'),
+    },
+    {
+        path: 'inicio',
+        loadChildren: () => import('./home-reals/task.routes'),
     },
     {
         path: 'home',
@@ -25,6 +29,6 @@ export default [
   
     {
         path: '**',
-        redirectTo: 'feeds',
+        redirectTo: 'inicio',
     },
 ] as Routes

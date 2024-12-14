@@ -16,7 +16,7 @@ interface FormSignUp {
 @Component({
   selector: 'app-forgot-password',
   standalone: true,
-  imports: [HeadComponent, ReactiveFormsModule,BotonGoogleComponent],
+  imports: [HeadComponent, ReactiveFormsModule,],
   templateUrl: './forgot-password.component.html',
   styles: ``,
 })
@@ -59,3 +59,5 @@ export default class SingUpComponent {
         }
       }
     }
+
+    
