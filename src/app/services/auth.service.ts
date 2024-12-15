@@ -1,6 +1,14 @@
 import { inject, Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword,signInWithEmailAndPassword,signInWithPopup,GoogleAuthProvider,sendPasswordResetEmail} from '@angular/fire/auth';
 import { User } from '../interface/user';
+import { FeedsServiceService } from './feeds-service.service';
+import { addDoc, collection } from 'firebase/firestore';
+import { Firestore } from '@angular/fire/firestore';
+
+
+export type UserCreate = Omit<User,'id'>
+
+const PATH = 'User'
 
 
 @Injectable({
@@ -9,16 +17,22 @@ import { User } from '../interface/user';
 
 export class AuthService {
   private _auth = inject(Auth) 
+  private _taskService = inject(FeedsServiceService)
+  private _firestore = inject(Firestore);
+  private _collection = collection(this._firestore,PATH)
   
-  recoverPassword(user: User) {
-    return sendPasswordResetEmail(this._auth, user.email);
+  
+  recoverPassword(email:string) {
+    return sendPasswordResetEmail(this._auth, email);
   }
-  singUP(user:User)  {
-    return createUserWithEmailAndPassword(this._auth, user.email, user.password);
+  singUP(usuario:User)  {
+
+    addDoc(this._collection, usuario);
+    return createUserWithEmailAndPassword(this._auth, usuario.email,usuario.password);
   }
 
-  singIn(user:User){
-    return signInWithEmailAndPassword(this._auth, user.email, user.password);
+  singIn(email:string,password:string){
+    return signInWithEmailAndPassword(this._auth, email, password)
   }
 
   singInWithGoogle(){

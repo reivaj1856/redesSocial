@@ -49,7 +49,7 @@ export default class SingUpComponent {
 
       if (!email || !password) return;
       
-      await this._authService.singIn({ email, password });
+      await this._authService.singIn( email, password );
       
       toast.success('Inicio de sesion autenticado')
 

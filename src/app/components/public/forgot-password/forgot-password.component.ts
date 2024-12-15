@@ -48,10 +48,9 @@ export default class SingUpComponent {
     
           if (!email) return;
     
-          await this._authService.recoverPassword({
-            email,
-            password: ''
-          });
+          await this._authService.recoverPassword(
+            email
+          );
     
           toast.success('Solicitud Autenticada, revise su bandeja');
         } catch (error) {
