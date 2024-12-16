@@ -3,24 +3,19 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { Firestore } from '@angular/fire/firestore';
 import { collection, addDoc ,collectionData} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { Publicacion } from '../interface/publicacion';
+import { Post } from '../interface/post';
+import { pouestCreate } from '../components/private/home-reals/model-doc/model-doc.component';
 
-export interface Publicacion{
-  id: string;
-  titulo: string;
-  subtitulo: string;
-  fecha: string;
-  texto: string;
-  enlace: string;
-}
 
-export type PublicacionCreate = Omit<Publicacion,'id'>
+export type realsCreate = Omit<Post,'id'>
 
-const PATH = 'publicacion'
+const PATH = 'post'
 
 @Injectable({
   providedIn: 'root'
 })
-export class FeedsServiceService {
+export class realService {
 
   constructor() { }
   
@@ -28,9 +23,9 @@ export class FeedsServiceService {
 
   private _collection = collection(this._firestore,PATH)
 
-  getPublicacion = toSignal(collectionData(this._collection, {idField: 'id'}) as Observable  <Publicacion[]>  ,{initialValue: []})
+  getPost = toSignal(collectionData(this._collection, {idField: 'id'}) as Observable  <Post[]>  ,{initialValue: []})
 
-  create(publicacion: PublicacionCreate){
-    return addDoc(this._collection, publicacion)
+  create(poust: pouestCreate){
+    return addDoc(this._collection, poust)
   }
 }

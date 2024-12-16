@@ -20,8 +20,7 @@ export class AuthService {
   private _taskService = inject(FeedsServiceService)
   private _firestore = inject(Firestore);
   private _collection = collection(this._firestore,PATH)
-  
-  
+
   recoverPassword(email:string) {
     return sendPasswordResetEmail(this._auth, email);
   }
@@ -34,6 +33,8 @@ export class AuthService {
   singIn(email:string,password:string){
     return signInWithEmailAndPassword(this._auth, email, password)
   }
+
+  
 
   singInWithGoogle(){
     const provider = new GoogleAuthProvider()

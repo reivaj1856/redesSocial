@@ -2,11 +2,11 @@
     @for (publicacion of publicaciones(); track publicacion.id){
         <article class="flex flex-col-3 shadow my-4 p-4 ">
                   
-            <a class=" h-auto w-max flex items-center justify-center bg-gray-100 p-4">
+            <a class=" h-auto w-max flex items-center justify-center bg-gray-100 p-4 w-2/4">
         
                 <img class="max-w-full max-h-screen object-contain " src="{{publicacion.enlace}}">
             </a>
-            <div class="bg-white flex flex-col justify-start p-6">
+            <div class="bg-white flex flex-col justify-start p-6 w-2/4">
                 <a href="/inscripciones" class="text-blue-700 text-sm font-bold uppercase pb-4">{{publicacion.titulo}}</a>
                 <a href="/inscripciones" class="text-3xl font-bold hover:text-gray-700 pb-4">
                     {{publicacion.subtitulo}}

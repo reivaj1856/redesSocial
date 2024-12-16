@@ -20,6 +20,7 @@ interface FormSignIn {
   templateUrl: './login.component.html',
   styles: ``,
 })
+
 export default class SingUpComponent {
   private _formBuilder = inject(FormBuilder);
   private _authService = inject(AuthService);
@@ -63,8 +64,6 @@ export default class SingUpComponent {
   }
   async submitWithGoogle(){
     try{
-
-
       await this._authService.singInWithGoogle()
       this.router.navigateByUrl('/content'); 
       toast.success('Inicio de sesion autenticado')

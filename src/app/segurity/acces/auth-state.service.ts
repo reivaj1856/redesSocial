@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 export class AuthStateService {
   private _auth = inject(Auth);
 
+
   get authState$(): Observable<any> {
     return authState(this._auth); 
   }
@@ -19,7 +20,6 @@ export class AuthStateService {
   }
 
   logOut() {
-    console.log("si entro")
     return signOut(this._auth);
   }
 }

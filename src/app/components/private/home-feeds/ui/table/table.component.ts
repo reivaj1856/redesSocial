@@ -1,5 +1,5 @@
 import { Component, effect, input } from '@angular/core';
-import { Publicacion } from '../../../../../services/feeds-service.service';
+import { Publicacion } from '../../../../../interface/publicacion';
 
 @Component({
   selector: 'app-table',

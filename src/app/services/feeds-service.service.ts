@@ -3,15 +3,9 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { Firestore } from '@angular/fire/firestore';
 import { collection, addDoc ,collectionData} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { Publicacion } from '../interface/publicacion';
 
-export interface Publicacion{
-  id: string;
-  titulo: string;
-  subtitulo: string;
-  fecha: string;
-  texto: string;
-  enlace: string;
-}
+
 
 export type PublicacionCreate = Omit<Publicacion,'id'>
 

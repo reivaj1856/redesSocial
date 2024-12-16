@@ -1,0 +1,26 @@
+<section class="w-full flex flex-col items-center">
+    @for (post of post(); track post.id){
+        <article class="flex flex-col-3 shadow my-4 p-4 w-3/4">
+                  
+            <a class=" h-auto w-max flex items-center justify-center bg-gray-100 p-4 w-2/4">
+        
+                <img class="max-w-full max-h-screen object-contain " src="{{post.enlace}}">
+            </a>
+            <div class="bg-white flex flex-col justify-start p-6 w-2/4">
+                <a href="/inscripciones" class="text-blue-700 text-sm font-bold uppercase pb-4">{{post.usuario}}</a>
+                <a href="/inscripciones" class="text-3xl font-bold hover:text-gray-700 pb-4">
+                    {{post.titulo}}
+                </a>
+                <p class="text-sm pb-3">
+                    Publicado el <span class="font-semibold">{{post.fecha}}</span>. 
+                </p>
+                <p class="pb-6">
+                    {{post.texto}}</p>
+        
+               
+            </div>
+            
+        </article>
+    }
+    
+  </section>

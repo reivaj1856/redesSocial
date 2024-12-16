@@ -4,7 +4,7 @@ import { RouterLink } from '@angular/router';
 
 import { TableComponent } from '../ui/table/table.component';
 import { FooterComponent } from '../../../footer/footer.component';
-import { FeedsServiceService, Publicacion } from '../../../../services/feeds-service.service';
+import { FeedsServiceService } from '../../../../services/feeds-service.service';
 
 @Component({
   selector: 'app-task-list',

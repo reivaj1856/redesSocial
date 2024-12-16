@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VarifiEmailComponent } from './varifi-email.component';
+import { UtilsComponent } from './utils.component';
 
-describe('VarifiEmailComponent', () => {
-  let component: VarifiEmailComponent;
-  let fixture: ComponentFixture<VarifiEmailComponent>;
+describe('UiComponent', () => {
+  let component: UtilsComponent;
+  let fixture: ComponentFixture<UtilsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VarifiEmailComponent]
+      imports: [UtilsComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(VarifiEmailComponent);
+    fixture = TestBed.createComponent(UtilsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
