@@ -7,6 +7,7 @@ import { BotonGoogleComponent } from '../../button-google/boton-google.component
 import { AuthService } from '../../../services/auth.service';
 import { toast } from 'ngx-sonner';
 import { FooterComponent } from '../../footer/footer.component';
+import { TableComponent } from '../../private/home-reals/utils/utils.component';
 
 interface FormSignIn {
   email: FormControl<string | null>;
@@ -25,7 +26,7 @@ export default class SingUpComponent {
   private _formBuilder = inject(FormBuilder);
   private _authService = inject(AuthService);
   constructor(private router: Router,public auth: AuthService ) {}
-
+  
 
   isRequired(field: 'email' | 'password') {
     return isRequired(field, this.form);
@@ -53,8 +54,8 @@ export default class SingUpComponent {
       await this._authService.singIn( email, password );
       
       toast.success('Inicio de sesion autenticado')
-
       
+ 
       this.router.navigateByUrl('/content'); 
 
     } catch (error) {

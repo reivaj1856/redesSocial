@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { AuthStateService } from '../../segurity/acces/auth-state.service';
 
+
 @Component({
   selector: 'app-head',
   standalone: true,
@@ -15,6 +16,7 @@ export class HeadComponent {
 
   async logOut() {
     await this._authState.logOut();
+
     this._router.navigateByUrl('/auth/sign-in');
   }
 }

@@ -20,7 +20,7 @@ export default [
     },
     {
         path: 'group',
-        loadComponent: () => import('./groups/groups.component'),
+        loadComponent: () => import('./group-save/groups/groups.component'),
     },
     {
         path: 'message',

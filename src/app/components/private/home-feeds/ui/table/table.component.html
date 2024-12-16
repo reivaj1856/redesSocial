@@ -1,8 +1,8 @@
 <section class="w-full  flex flex-col items-center">
     @for (publicacion of publicaciones(); track publicacion.id){
-        <article class="flex flex-col-3 shadow my-4 p-4 ">
+        <article class="flex flex-col-3 shadow my-4 p-4 w-4/4">
                   
-            <a class=" h-auto w-max flex items-center justify-center bg-gray-100 p-4 w-2/4">
+            <a class=" h-auto flex items-center justify-center bg-gray-100 p-4 w-2/4">
         
                 <img class="max-w-full max-h-screen object-contain " src="{{publicacion.enlace}}">
             </a>

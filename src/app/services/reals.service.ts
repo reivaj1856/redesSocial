@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { Publicacion } from '../interface/publicacion';
 import { Post } from '../interface/post';
 import { pouestCreate } from '../components/private/home-reals/model-doc/model-doc.component';
+import { doc, updateDoc } from 'firebase/firestore';
 
 
 export type realsCreate = Omit<Post,'id'>
@@ -27,5 +28,9 @@ export class realService {
 
   create(poust: pouestCreate){
     return addDoc(this._collection, poust)
+  }
+  update(poust: pouestCreate,id:string){
+    const docRef = doc(this._collection,id)
+    return updateDoc(docRef, poust)
   }
 }

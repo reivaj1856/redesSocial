@@ -1,15 +1,15 @@
 import { Component, effect, inject, input } from '@angular/core';
 import { Post } from '../../../../interface/post';
-import { pouestCreate } from '../model-doc/model-doc.component';
+import { pouestCreate } from '../groups-model/groups-model.component';
 import { realService } from '../../../../services/reals.service';
 
 @Component({
-  selector: 'app-utils',
+  selector: 'app-groups-utiles',
   standalone: true,
   imports: [],
-  templateUrl: './utils.component.html',
+  templateUrl: './groups-utiles.component.html',
 })
-export class TableComponent {
+export class GroupUtilsComponent {
  
   post = input.required<Post[]>();
   presionado :boolean=false;
