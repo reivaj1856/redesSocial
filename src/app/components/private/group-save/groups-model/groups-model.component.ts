@@ -12,10 +12,9 @@ import { user } from '@angular/fire/auth';
 import { AuthStateService } from '../../../../segurity/acces/auth-state.service';
 
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { Group } from '../../../../interface/group';
 
-export type pouestCreate = Omit<Post,'id'>
-export type comentCreate = Omit<Comentario,'id'>
-
+export type groupCreate = Omit<Group,'id'>
 
 const auth = getAuth();
 onAuthStateChanged(auth, (user) => {
@@ -40,8 +39,6 @@ onAuthStateChanged(auth, (user) => {
 export class GroupsModelDocComponent {
   constructor(public _matDialogoRef:MatDialogRef <GroupsModelDocComponent>, private afAuth: AuthService ){}
   
-  
-  
   email: string = String(auth.currentUser?.email); 
   private _formBuilder = inject(FormBuilder);
     private _taskService = inject(realService)
@@ -51,29 +48,29 @@ export class GroupsModelDocComponent {
     loading = signal(false);
   
     form= this._formBuilder.group({
-      titulo: this._formBuilder.control('',Validators.required),
+      nombre: this._formBuilder.control('',Validators.required),
       texto: this._formBuilder.control('',Validators.required),
       enlace: this._formBuilder.control('',Validators.required),
     })
 
   async submit(){
-      if(this.form.invalid) return;
+      if(this.form.invalid) {
+        console.log("noentro")
+        return;
+      }
+        
       try{
         
         this.loading.set(true);
-        const fecha = new Date();
-        const soloFecha = fecha.toLocaleDateString();
-        const  {titulo,texto,enlace} = this.form.value;
-        const pouest :pouestCreate = {
-          titulo: titulo || '',
-          usuario: this.email,
-          fecha: soloFecha,
+        const  {nombre,texto,enlace} = this.form.value;
+        const pouest :groupCreate = {
+          titulo: nombre || '',
           texto: texto || '',
           enlace: enlace || '',
-          like : 0 ,
+          Usuarios: [] 
         };
   
-      await this._taskService.create(pouest)
+      await this._taskService.createG(pouest)
       toast.success('publicacion exitosa')
       this._router.navigateByUrl('/content')
       }catch(error){
@@ -83,5 +80,5 @@ export class GroupsModelDocComponent {
       }
     }
    
-  
+    
 }

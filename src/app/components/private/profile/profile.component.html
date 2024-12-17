@@ -1,2 +1,57 @@
-<p>profile works!</p>
-        
+<body class="bg-gray-100 py-5">
+    <!-- Contenedor Principal -->
+    <div class="max-w-4xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-lg">
+      <!-- Encabezado -->
+      <div class="flex items-center gap-6">
+        <!-- Imagen de Perfil -->
+        <img
+          class="w-24 h-24 rounded-full object-cover border-4 border-blue-500"
+          src="{{valor3}}"
+          alt="Foto de Perfil"
+        />
+        <!-- Información del Usuario -->
+        <div>
+          <h1 class="text-2xl font-semibold text-gray-800">{{valor2}}</h1>
+          <p class="text-gray-600">Desarrollador Web | Universidad Privada Domingo Savio</p>
+          <p class="text-blue-600 font-medium mt-2">Cochabamba, Bolivia</p>
+        </div>
+      </div>
+
+      <!-- Detalles de Perfil -->
+      <div class="mt-6 border-t pt-6">
+        <h2 class="text-lg font-semibold text-gray-700 mb-3">Información de contacto</h2>
+        <ul class="text-gray-600">
+          <li><strong>Email:</strong> {{ valor }}</li>
+          <li><strong>Teléfono:</strong> {{valor1}}</li>
+          <li><strong>Dirección:</strong> Av. Libertador, Cochabamba</li>
+        </ul>
+      </div>
+
+      <!-- Sección Acerca de Mi -->
+      <div class="mt-6 border-t pt-6">
+        <h2 class="text-lg font-semibold text-gray-700 mb-3">Acerca de mí</h2>
+        <p class="text-gray-600 leading-relaxed">
+          Soy un apasionado desarrollador web con experiencia en el desarrollo de
+          aplicaciones front-end y back-end. Actualmente estoy estudiando en la
+          Universidad Privada Domingo Savio y busco mejorar cada día.
+        </p>
+      </div>
+
+      <!-- Botones de Acción -->
+      <div class="mt-6 flex gap-4">
+        <button
+          class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-all"
+        >
+          Editar Perfil
+        </button>
+        <button
+          class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition-all"
+        >
+          Cerrar Sesión
+        </button>
+      </div>
+    </div>
+    
+  </body>
+  <app-footer></app-footer>
+  

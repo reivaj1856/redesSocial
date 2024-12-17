@@ -9,31 +9,34 @@ import { realsCreate, realService } from '../../../../services/reals.service';
 import { toast } from 'ngx-sonner';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
-import { GroupsModelDocComponent, groupCreate } from '../groups-model/groups-model.component';
-import { GroupUtilsComponent } from "../groups-utiles/groups-utiles.component";
 import { Post } from '../../../../interface/post';
 import { ModelDocComponent } from '../../home-reals/model-doc/model-doc.component';
+import EventUtilsComponent from '../event-utils/event-utils.component';
+import EventModelComponent from '../event-model/event-model.component';
+
+
 
 
 
 @Component({
-  selector: 'app-groups',
+  selector: 'app-event',
   standalone: true,
-  imports: [FooterComponent, ReactiveFormsModule, MatIconModule, GroupUtilsComponent],
-  templateUrl: './groups.component.html',
+  imports: [FooterComponent, ReactiveFormsModule, MatIconModule, EventUtilsComponent],
+  templateUrl: './event.component.html',
+  styleUrl: './event.component.css'
 })
-export default class GroupsComponent {
-
-  constructor(private _publicEmergente: MatDialog){
-   
-  } 
-
-  group = inject(realService).getGroup;
-
+export default class EventComponent {
   
-     publicar():void{
-      this._publicEmergente.open(GroupsModelDocComponent, {width: '900px'});
-     }
-
+    constructor(private _publicEmergente: MatDialog){
+     
+    } 
+  
+    eventos = inject(realService).getEventos;
+  
     
+       publicar():void{
+        this._publicEmergente.open(EventModelComponent, {width: '900px'});
+       }
+  
+      
 }

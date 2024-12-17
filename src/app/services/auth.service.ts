@@ -1,14 +1,15 @@
 import { inject, Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword,signInWithEmailAndPassword,signInWithPopup,GoogleAuthProvider,sendPasswordResetEmail} from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword,signInWithEmailAndPassword,signInWithPopup,GoogleAuthProvider,sendPasswordResetEmail,sendEmailVerification,} from '@angular/fire/auth';
 import { User } from '../interface/user';
 import { FeedsServiceService } from './feeds-service.service';
 import { addDoc, collection } from 'firebase/firestore';
 import { Firestore } from '@angular/fire/firestore';
+import { UserCreate } from '../components/public/register/register.component';
+import { Router } from '@angular/router';
 
 
-export type UserCreate = Omit<User,'id'>
 
-const PATH = 'User'
+const PATH = 'user'
 
 
 @Injectable({
@@ -17,24 +18,33 @@ const PATH = 'User'
 
 export class AuthService {
   private _auth = inject(Auth) 
-  private _taskService = inject(FeedsServiceService)
   private _firestore = inject(Firestore);
   private _collection = collection(this._firestore,PATH)
+  private _router = inject(Router);
+
 
   recoverPassword(email:string) {
     return sendPasswordResetEmail(this._auth, email);
   }
-  singUP(usuario:User)  {
+  
+  async signUp(user: UserCreate) {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        this._auth,
+        user.email,
+        user.password
+      );
 
-    addDoc(this._collection, usuario);
-    return createUserWithEmailAndPassword(this._auth, usuario.email,usuario.password);
+      // Enviar correo de verificación al usuario
+      await sendEmailVerification(userCredential.user);
+      return userCredential.user;
+    } catch (error) {
+      throw new Error('Error al crear el usuario.');
+    }
   }
-
   singIn(email:string,password:string){
     return signInWithEmailAndPassword(this._auth, email, password)
   }
-
-  
 
   singInWithGoogle(){
     const provider = new GoogleAuthProvider()
@@ -42,6 +52,18 @@ export class AuthService {
     provider.setCustomParameters({prompt: 'select_account'})
 
     return signInWithPopup(this._auth,provider);
+  }
+
+   // Método para recargar el estado del usuario
+  async reloadUser(): Promise<void> {
+    const user = this._auth.currentUser;
+    if (user) {
+      await user.reload();
+    }
+  }
+
+  get isEmailVerified$(): boolean {
+    return this._auth.currentUser?.emailVerified ?? false;
   }
 
   constructor() { } 

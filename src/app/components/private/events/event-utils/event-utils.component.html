@@ -1,24 +1,24 @@
 <section class="w-full flex flex-col items-center">
-    @for (group of group(); track group.id){
+    @for (eventos of events(); track eventos.id){
         <article class="flex flex-col-3 shadow my-4 p-4 w-3/4">
                   
             <a class=" h-auto flex items-center justify-center bg-gray-100 p-4 w-1/4">
         
-                <img class="max-w-full max-h-screen object-contain " src="{{group.enlace}}">
+                <img class="max-w-full max-h-screen object-contain " src="{{eventos.enlace}}">
             </a>
             <div class="bg-white flex flex-col justify-start p-6 w-3/4">
                 <a href="" class="text-3xl font-bold hover:text-gray-700 pb-4">
-                    {{group.titulo}}
+                    {{eventos.titulo}}
                 </a>
                 <p class="pb-6">
-                    {{group.texto}}</p>
+                    {{eventos.texto}}</p>
                <div class="items-center">
-                <button (click)="unirse(group.id)" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-950 dark:hover:bg-blue-900 focus:outline-none dark:focus:ring-blue-800">Unirse</button>
+                <button (click)="unirse(eventos.id)" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-950 dark:hover:bg-blue-900 focus:outline-none dark:focus:ring-blue-800">inscribirse en el evento</button>
 
                </div>
                <div>
                 <p>usuarios inscritos</p>
-                @for (usuarios of group.Usuarios; track usuarios){
+                @for (usuarios of eventos.Usuarios; track usuarios){
                     <p>{{usuarios}}</p>
                 }@empty {
                     <p>todavia no hay usuarios inscritos</p>

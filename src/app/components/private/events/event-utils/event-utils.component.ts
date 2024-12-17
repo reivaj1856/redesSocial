@@ -1,6 +1,5 @@
 import { Component, effect, inject, input } from '@angular/core';
 import { Post } from '../../../../interface/post';
-import { groupCreate } from '../groups-model/groups-model.component';
 import { realService } from '../../../../services/reals.service';
 import { Group } from '../../../../interface/group';
 import { User } from '../../../../interface/user';
@@ -8,26 +7,29 @@ import { doc, getDoc, getFirestore } from 'firebase/firestore';
 import { initializeApp } from 'firebase/app';
 import db from '../../../../../environments/environment';
 import { getAuth,  } from "firebase/auth";
+import { eventCreate } from '../event-model/event-model.component';
+import { Eventos } from '../../../../interface/event';
 
 const auth = getAuth();
 
-
 @Component({
-  selector: 'app-groups-utiles',
+  selector: 'app-event-utils',
   standalone: true,
   imports: [],
-  templateUrl: './groups-utiles.component.html',
+  templateUrl: './event-utils.component.html',
+  styleUrl: './event-utils.component.css'
 })
-export class GroupUtilsComponent {
-
-  group = input.required<Group[]>();
+export default class EventUtilsComponent {
+  
+  events = input.required<Eventos[]>();
+  
   
   private _taskService = inject(realService)
   private user: string[] = [];
   async unirse(id: string) {
     try {
       // Crea una referencia al documento específico en la colección "User"
-      const docRef = doc(db, "group", id);
+      const docRef = doc(db, "eventos", id);
       console.log(id)
       
       // Recupera el documento
@@ -37,13 +39,14 @@ export class GroupUtilsComponent {
         const userData = docSnap.data(); // Recupera los datos del documento
         this.user = userData["Usuarios"];
         this.agregarItem((String(auth.currentUser?.email)),this.user)
-        const group :groupCreate = {
-                      titulo: userData["titulo"] || '', 
-                      texto: userData["texto"] || '',
-                      enlace: userData["enlace"]|| '',
-                      Usuarios: this.user ||'',
-                    };
-        this._taskService.updateG(group,id)
+        const group :eventCreate = {
+          titulo: userData["titulo"] || '', 
+          texto: userData["texto"] || '',
+          enlace: userData["enlace"]|| '',
+          Usuarios: this.user ||'',
+        };
+        
+        this._taskService.updateE(group,id)
       } else {
         console.log("No such document!");
       }

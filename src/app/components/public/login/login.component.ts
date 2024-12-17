@@ -48,21 +48,23 @@ export default class SingUpComponent {
 
     try {
       const { email, password } = this.form.value;
-
       if (!email || !password) return;
-      
-      await this._authService.singIn( email, password );
-      
-      toast.success('Inicio de sesion autenticado')
-      
- 
-      this.router.navigateByUrl('/content'); 
 
+      await this._authService.singIn( email, password );
+      await this._authService.reloadUser();
+
+      if (this._authService.isEmailVerified$) {
+        toast.success('Inicio de sesion autenticado');
+        this.router.navigateByUrl('/content');
+      } else {
+        toast.info('Verifica tu correo para continuar');
+      }
     } catch (error) {
-      toast.success('Cuenta no existente o contraseña incorrecta')
- 
+      console.error('Error en el inicio de sesión:', error);
+      toast.error('Ups, ocurrió un error');
     }
   }
+
   async submitWithGoogle(){
     try{
       await this._authService.singInWithGoogle()

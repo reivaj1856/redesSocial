@@ -16,7 +16,7 @@ export default [
     },
     {
         path: 'events',
-        loadComponent: () => import('./events/events.component'),
+        loadComponent: () => import('./events/event/event.component'),
     },
     {
         path: 'group',
@@ -25,6 +25,18 @@ export default [
     {
         path: 'message',
         loadComponent: () => import('./message/message.component'),
+    },
+    {
+        path: 'polit',
+        loadComponent: () => import('./politica-privacidad/politica-privacidad.component'),
+    },
+    {
+        path: 'licens',
+        loadComponent: () => import('./licens/licens.component'),
+    },
+    {
+        path: 'profile',
+        loadComponent: () => import('./profile/profile.component'),
     },
   
     {
